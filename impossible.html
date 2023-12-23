@@ -448,7 +448,7 @@ function intervalTime() {
   }
   secs++;
   $("#board-time").text(currentMinutes + " | " + currentSeconds);
-  $("#myPopupwin").text("YOU'RE CRAZY!!! Thời gian hoàn thành "+currentMinutes + " phút " + currentSeconds+" giây")
+  $("#myPopupwin").text("YOU WIN!!! Thời gian "+currentMinutes + "p " + currentSeconds+"s (Khởi động lại sau 5s)")
   timer = setTimeout('intervalTime()', 1000);
   console.log(secs);
 }
@@ -642,7 +642,10 @@ $("#control .dn1").bind("click",function() {
     if(winString == matrixStr) {
         clearTimeout(timer);
         popup.classList.toggle("show");
+        timer = setTimeout('restart()', 5000);
         return;
     } }
-  
+    function restart(){
+      window.location.href = 'impossible.html';
+    }
 </script>
