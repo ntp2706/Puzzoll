@@ -1,0 +1,638 @@
+<!-- Width = 1536px -->
+<!-- Height = 695px -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="/P.png"/>
+    <title>Puzzoll</title>
+    <style>
+        body{
+            background-image: url('hulkbuster/background.jpg');
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+        .maintitle{
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        #board-time{
+          font-family: 'Courier New', Courier, monospace;
+          margin-left: 10px;
+          font-size: x-large;
+          color: black;
+          display: inline-block;
+          padding: 20px 52px;
+          border: 4px solid black;
+          background-color: white;
+          border-radius: 20px;
+        }
+        #sample{
+          margin-top: -429px;
+          margin-left: 120px;
+        }
+        #shuffle{
+          height: 60px;
+          width: 60px;
+          cursor: pointer;
+          margin-top: 430px;
+          margin-left: 60px;
+        }
+        #popup {
+          position: relative;
+          display: inline-block;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        #popup .popuptext {
+          visibility: hidden;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 8px 0;
+          position: absolute;
+          z-index: 1;
+        }
+        #myPopup{
+          width: 160px;
+          margin-top: -100px;
+          margin-left: 10px;
+        }
+        #myPopupwin{
+          width: 230px;
+          margin-top: -333px;
+          margin-left: 525px;
+        }
+        #popup .popuptext::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #555 transparent transparent transparent;
+        }
+        #popup .show {
+          visibility: visible;
+          -webkit-animation: fadeIn 1s;
+          animation: fadeIn 1s;
+        }
+        @-webkit-keyframes fadeIn {
+          from {opacity: 0;} 
+          to {opacity: 1;}
+        }
+        @keyframes fadeIn {
+          from {opacity: 0;}
+          to {opacity:1 ;}
+        }
+        #puzzle .cell-puzzle {
+            width: 96px;
+            height: 96px;
+            border: 4px solid transparent;
+            margin-left: 522px;
+            margin-top: 121.5px;
+            position: absolute;
+        }
+        #puzzle > .row-1 {
+            top: 0;
+        }
+        #puzzle > .row-2 {
+            top: 100px;
+        }
+        #puzzle > .row-3 {
+            top: 200px;
+        }
+        #puzzle > .row-4 {
+            top: 300px;
+        }
+        #puzzle > .row-5 {
+            top: 400px;
+        }
+        #puzzle > .col-1 {
+            left: 0;
+        }
+        #puzzle > .col-2 {
+            left: 100px;
+        }
+        #puzzle > .col-3 {
+            left: 200px;
+        }
+        #puzzle > .col-4 {
+            left: 300px;
+        }
+        #puzzle > .col-5 {
+            left: 400px;
+        }
+        #control{
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+        }
+        #control .up{
+            margin-top: -68.5px;
+            margin-left: 550px;
+            position: absolute;
+            border: 5px solid transparent;
+        }
+        #control > .un1{
+            left: 0;
+        }
+        #control > .un2{
+            left: 100px;
+        }
+        #control > .un3{
+            left: 200px;
+        }
+        #control > .un4{
+            left: 300px;
+        }
+        #control > .un5{
+            left: 400px;
+        }
+        #control .left{
+            margin-top: 149.5px;
+            margin-left: 469px;
+            position: absolute;
+            border: 5px solid transparent;
+        }
+        #control > .ln1{
+            top: 0;
+        }
+        #control > .ln2{
+            top: 100px;
+        }
+        #control > .ln3{
+            top: 200px;
+        }
+        #control > .ln4{
+            top: 300px;
+        }
+        #control > .ln5{
+            top: 400px;
+        }
+        #control .right{
+            margin-top: 161.5px;
+            margin-left: 1014px;
+            position: absolute;
+            border: 5px solid transparent;
+        }
+        #control > .rn1{
+            top: 0;
+        }
+        #control > .rn2{
+            top: 100px;
+        }
+        #control > .rn3{
+            top: 200px;
+        }
+        #control > .rn4{
+            top: 300px;
+        }
+        #control > .rn5{
+            top: 400px;
+        }
+        #control .down{
+            margin-top: 477px;
+            margin-left: 550px;
+            position: absolute;
+            border: 5px solid transparent;
+        }
+        #control > .dn1{
+            left: 0;
+        }
+        #control > .dn2{
+            left: 100px;
+        }
+        #control > .dn3{
+            left: 200px;
+        }
+        #control > .dn4{
+            left: 300px;
+        }
+        #control > .dn5{
+            left: 400px;
+        }
+    </style>
+</head>
+<body>
+    <a class="maintitle" href="index.html">
+        <img src="logo.png" height="40" width="217"></img>
+    </a>
+    <div> <hr> </div>
+    <div id="board-time">00 | 00</div>
+    <div id="puzzle">
+        <div number="1" class="cell-puzzle row-1 col-1">
+          <img src="hulkbuster/pic1.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="2" class="cell-puzzle row-1 col-2">
+          <img src="hulkbuster/pic2.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="3" class="cell-puzzle row-1 col-3">
+          <img src="hulkbuster/pic3.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="4" class="cell-puzzle row-1 col-4">
+          <img src="hulkbuster/pic4.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="5" class="cell-puzzle row-1 col-5">
+          <img src="hulkbuster/pic5.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="6" class="cell-puzzle row-2 col-1">
+          <img src="hulkbuster/pic6.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="7" class="cell-puzzle row-2 col-2">
+          <img src="hulkbuster/pic7.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="8" class="cell-puzzle row-2 col-3">
+          <img src="hulkbuster/pic8.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="9" class="cell-puzzle row-2 col-4">
+          <img src="hulkbuster/pic9.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="10" class="cell-puzzle row-2 col-5">
+          <img src="hulkbuster/pic10.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="11" class="cell-puzzle row-3 col-1">
+          <img src="hulkbuster/pic11.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="12" class="cell-puzzle row-3 col-2">
+          <img src="hulkbuster/pic12.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="13" class="cell-puzzle row-3 col-3">
+          <img src="hulkbuster/pic13.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="14" class="cell-puzzle row-3 col-4">
+          <img src="hulkbuster/pic14.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="15" class="cell-puzzle row-3 col-5">
+          <img src="hulkbuster/pic15.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="16" class="cell-puzzle row-4 col-1">
+          <img src="hulkbuster/pic16.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="17" class="cell-puzzle row-4 col-2">
+          <img src="hulkbuster/pic17.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="18" class="cell-puzzle row-4 col-3">
+          <img src="hulkbuster/pic18.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="19" class="cell-puzzle row-4 col-4">
+            <img src="hulkbuster/pic19.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="20" class="cell-puzzle row-4 col-5">
+          <img src="hulkbuster/pic20.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="21" class="cell-puzzle row-5 col-1">
+          <img src="hulkbuster/pic21.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="22" class="cell-puzzle row-5 col-2">
+          <img src="hulkbuster/pic22.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="23" class="cell-puzzle row-5 col-3">
+          <img src="hulkbuster/pic23.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="24" class="cell-puzzle row-5 col-4">
+            <img src="hulkbuster/pic24.jpg" height="96px" width="96px"></img>
+        </div>
+        <div number="25" class="cell-puzzle row-5 col-5">
+          <img src="hulkbuster/pic25.jpg" height="96px" width="96px"></img>
+        </div>
+      </div>
+      <div id="control">
+        <div number="1" class="up un1">
+            <img src="up.png" height="40px" width="40px"></img>
+        </div>
+        <div number="2" class="up un2">
+            <img src="up.png" height="40px" width="40px"></img>
+        </div>
+        <div number="3" class="up un3">
+            <img src="up.png" height="40px" width="40px"></img>
+        </div>
+        <div number="4" class="up un4">
+            <img src="up.png" height="40px" width="40px"></img>
+        </div>
+        <div number="5" class="up un5">
+          <img src="up.png" height="40px" width="40px"></img>
+      </div>
+        <div number="1" class="left ln1">
+          <img src="left.png" height="40px" width="40px"></img>
+        </div>
+        <div number="2" class="left ln2">
+          <img src="left.png" height="40px" width="40px"></img>
+        </div>
+        <div number="3" class="left ln3">
+          <img src="left.png" height="40px" width="40px"></img>
+        </div>
+        <div number="4" class="left ln4">
+          <img src="left.png" height="40px" width="40px"></img>
+        </div>
+        <div number="5" class="left ln5">
+          <img src="left.png" height="40px" width="40px"></img>
+        </div>
+        <div number="1" class="right rn1">
+          <img src="right.png" height="40px" width="40px"></img>
+        </div>
+        <div number="2" class="right rn2">
+          <img src="right.png" height="40px" width="40px"></img>
+        </div>
+        <div number="3" class="right rn3">
+          <img src="right.png" height="40px" width="40px"></img>
+        </div>
+        <div number="4" class="right rn4">
+          <img src="right.png" height="40px" width="40px"></img>
+        </div>
+        <div number="5" class="right rn5">
+          <img src="right.png" height="40px" width="40px"></img>
+        </div>
+        <div number="1" class="down dn1">
+          <img src="down.png" height="40px" width="40px"></img>
+        </div>
+        <div number="2" class="down dn2">
+          <img src="down.png" height="40px" width="40px"></img>
+        </div>
+        <div number="3" class="down dn3">
+          <img src="down.png" height="40px" width="40px"></img>
+        </div>
+        <div number="4" class="down dn4">
+          <img src="down.png" height="40px" width="40px"></img>
+        </div>
+        <div number="5" class="down dn5">
+          <img src="down.png" height="40px" width="40px"></img>
+        </div>
+      </div>
+      <div id="popup" onclick="popupactive()">
+        <div id="shuffle">
+          <img src="shuffle.png" height="60px" width="60px"></img>
+        </div>
+        <span class="popuptext" id="myPopup">Ấn vào đây để bắt đầu</span>
+      </div>
+      <div id="popup">
+        <span class="popuptext" id="myPopupwin"></span>
+      </div>
+      <div id="sample">
+        <img src="hulkbuster/hulkbusterori.jpg" height="244px" width="244px"></img>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+  var matrix = [
+  [1, 2, 3, 4, 5],
+  [6, 7, 8, 9, 10],
+  [11, 12, 13, 14, 15],
+  [16, 17, 18, 19, 20],
+  [21, 22, 23, 24, 25]
+];
+  var num = [];
+  var obj = [];
+  var secs = 0;
+  var currentSeconds = 0;
+  var currentMinutes = 0;
+  var timer;
+  var clicked = 0;
+  $("#shuffle").bind("click",function(){
+   initialize();
+})
+popupactive();
+  function popupactive() {
+    var popup = document.getElementById("myPopup");
+    if(clicked < 2){
+    popup.classList.toggle("show");
+    clicked++;;
+    }
+  }
+  function initialize(){  //di chuyển theo thứ tự ngẫu nhiên
+  beginTime();
+  for(var i = 0; i < 999; i++) {
+    var r1 = Math.floor(Math.random() * 4) + 1;
+    var r2 = Math.floor(Math.random() * 4) + 1;
+    movedown(r1);
+    moveright(r2);
+  }
+}
+function beginTime() {
+  secs = 0;
+  currentSeconds = 0;
+  currentMinutes = 0;
+  clearTimeout(timer);
+  intervalTime();
+}
+function intervalTime() {
+  currentMinutes = Math.floor(secs / 60);
+  currentSeconds = secs % 60;
+  if(currentMinutes <= 9) {
+    currentMinutes = "0" + currentMinutes;
+  }
+  if(currentSeconds <= 9) {
+    currentSeconds = "0" + currentSeconds;
+  }
+  secs++;
+  $("#board-time").text(currentMinutes + " | " + currentSeconds);
+  $("#myPopupwin").text("YOU WIN!!! Thời gian "+currentMinutes + "p " + currentSeconds+"s (Khởi động lại sau 5s)")
+  timer = setTimeout('intervalTime()', 1000);
+  console.log(secs);
+}
+ 
+//đọc di chuyển xuống
+$("#control .dn1").bind("click",function() {
+    if(secs > 0){
+        movedown(1);
+      }
+  })
+  $("#control .dn2").bind("click",function() {
+    if(secs > 0){
+        movedown(2);
+      }
+  })
+  $("#control .dn3").bind("click",function() {
+    if(secs > 0){
+        movedown(3);
+      }
+  })
+  $("#control .dn4").bind("click",function() {
+    if(secs > 0){
+        movedown(4);
+      }
+  })
+  $("#control .dn5").bind("click",function() {
+    if(secs > 0){
+        movedown(5);
+      }
+  })
+
+  function movedown(numofcol) { //hàm gọi di chuyển xuống
+    var temp = matrix[4][numofcol-1];
+    var win = false
+  for(var i = 0; i < 5; i++) {
+      num[i]= matrix[i][numofcol-1];
+      matrix[i][numofcol-1] = num[i-1];
+      obj[i] = $("#puzzle .cell-puzzle[number="+ num[i] +"]");
+      if(i!==4){
+      obj[i].css(
+            'top',  (i+1)*100+ 'px'
+            );}
+            else {
+      obj[i].css(
+            'top',  0+ 'px'
+            );}
+    } 
+    matrix[0][numofcol-1] = temp;
+    win = checkWin();
+        if (win){
+          return;
+        }
+    }
+    //đọc di chuyển lên
+    $("#control .un1").bind("click",function() {
+    if(secs > 0){
+        movedown(1);
+        movedown(1);
+        movedown(1);
+        movedown(1);
+      }
+  })
+  $("#control .un2").bind("click",function() {
+    if(secs > 0){
+        movedown(2);
+        movedown(2);
+        movedown(2);
+        movedown(2);
+      }
+  })
+  $("#control .un3").bind("click",function() {
+    if(secs > 0){
+        movedown(3);
+        movedown(3);
+        movedown(3);
+        movedown(3);
+      }
+  })
+  $("#control .un4").bind("click",function() {
+    if(secs > 0){
+        movedown(4);
+        movedown(4);
+        movedown(4);
+        movedown(4);
+      }
+  })
+  $("#control .un5").bind("click",function() {
+    if(secs > 0){
+        movedown(5);
+        movedown(5);
+        movedown(5);
+        movedown(5);
+      }
+  })
+
+     //đọc di chuyển sang phải
+  $("#control .rn1").bind("click",function() {
+    if(secs > 0){
+        moveright(1);
+      }
+  })
+  $("#control .rn2").bind("click",function() {
+    if(secs > 0){
+        moveright(2);
+      }
+  })
+  $("#control .rn3").bind("click",function() {
+    if(secs > 0){
+        moveright(3);
+      }
+  })
+  $("#control .rn4").bind("click",function() {
+    if(secs > 0){
+        moveright(4);
+      }
+  })
+  $("#control .rn5").bind("click",function() {
+    if(secs > 0){
+        moveright(5);
+      }
+  })
+
+  function moveright(numofrow) { //hàm gọi di chuyển sang phải
+    var temp = matrix[numofrow-1][4];
+    var win = false;
+  for(var i = 0; i < 5; i++) {
+      num[i]= matrix[numofrow-1][i];
+      matrix[numofrow-1][i] = num[i-1];
+      obj[i] = $("#puzzle .cell-puzzle[number="+ num[i] +"]");
+      if(i!==4){
+      obj[i].css(
+            'left',  (i+1)*100+ 'px'
+            );}
+            else {
+      obj[i].css(
+            'left',  0+ 'px'
+            );}
+    } 
+    matrix[numofrow-1][0] = temp;
+    win = checkWin();
+        if (win){
+          return;
+        }
+    }
+     //đọc di chuyển sang trái
+  $("#control .ln1").bind("click",function() {
+    if(secs > 0){
+        moveright(1);
+        moveright(1);
+        moveright(1);
+        moveright(1);
+      }
+  })
+  $("#control .ln2").bind("click",function() {
+    if(secs > 0){
+        moveright(2);
+        moveright(2);
+        moveright(2);
+        moveright(2);
+      }
+  })
+  $("#control .ln3").bind("click",function() {
+    if(secs > 0){
+        moveright(3);
+        moveright(3);
+        moveright(3);
+        moveright(3);
+      }
+  })
+  $("#control .ln4").bind("click",function() {
+    if(secs > 0){
+        moveright(4);
+        moveright(4);
+        moveright(4);
+        moveright(4);
+      }
+  })
+  $("#control .ln5").bind("click",function() {
+    if(secs > 0){
+        moveright(5);
+        moveright(5);
+        moveright(5);
+        moveright(5);
+      }
+  })
+    function checkWin(){
+    var winner =false;
+    var winString = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25";
+    var matrixStr = matrix.toString();
+    var popup = document.getElementById("myPopupwin");
+    if(winString == matrixStr) {
+        clearTimeout(timer);
+        popup.classList.toggle("show");
+        timer = setTimeout('restart()', 5000);
+        return;
+    } }
+    function restart(){
+      window.location.href = '5x5.html';
+    }
+</script>
