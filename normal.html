@@ -299,27 +299,13 @@
     }
   }
 function initialize(){  //di chuyển theo thứ tự ngẫu nhiên
-  var arrRandomNumber = shuffleMatrix();
-  var count = 0;
   beginTime();
-  for(var i = 0; i < 3; i++) {
-    for(var j = 0; j < 3; j++) {
-      var number = arrRandomNumber[count];
-      matrix[i][j] = number;
-      $("#puzzle .cell-puzzle[number=" + number + "]").css("top", i * 164 + "px");
-      $("#puzzle .cell-puzzle[number=" + number + "]").css("left", j * 164 + "px");
-      count++;
-    }
+  for(var i = 0; i < 99; i++) {
+    var r1 = Math.floor(Math.random() * 2) + 1;
+    var r2 = Math.floor(Math.random() * 2) + 1;
+    movedown(r1);
+    moveright(r2);
   }
-}
-
-function shuffleMatrix(){   //tạo mảng ngẫu nhiên
-  var arr = [];
-  while(arr.length < 9){
-    var r = Math.floor(Math.random() * 9) + 1;
-    if(arr.indexOf(r) === -1) arr.push(r);
-  }
-  return arr;
 }
 
 function beginTime() {  //khởi tạo đồng hồ đếm thời gian
