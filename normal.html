@@ -1,0 +1,475 @@
+<!-- Width = 1536px -->
+<!-- Height = 695px -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="/P.png"/>
+    <title>Puzzoll</title>
+    <style>
+        body{
+            background-image: url('deadpool/background.png');
+            background-attachment: fixed;
+            background-size: 100% 100%;
+          }
+        .maintitle{
+            margin-top: 10px;
+            margin-left: 10px;
+          }
+        #board-time{
+          font-family: 'Courier New', Courier, monospace;
+          margin-left: 10px;
+          font-size: x-large;
+          color: black;
+          display: inline-block;
+          padding: 20px 52px;
+          border: 4px solid black;
+          background-color: white;
+          border-radius: 20px;
+        }
+        #sample{
+          margin-top: -429px;
+          margin-left: 120px;
+        }
+        #shuffle{
+          height: 60px;
+          width: 60px;
+          cursor: pointer;
+          margin-top: 430px;
+          margin-left: 60px;
+        }
+        #popup {
+          position: relative;
+          display: inline-block;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        #popup .popuptext {
+          visibility: hidden;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 8px 0;
+          position: absolute;
+          z-index: 1;
+        }
+        #myPopup{
+          width: 160px;
+          margin-top: -100px;
+          margin-left: 10px;
+        }
+        #myPopupwin{
+          width: 230px;
+          margin-top: -333px;
+          margin-left: 525px;
+        }
+        #popup .popuptext::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #555 transparent transparent transparent;
+        }
+        #popup .show {
+          visibility: visible;
+          -webkit-animation: fadeIn 1s;
+          animation: fadeIn 1s;
+        }
+        @-webkit-keyframes fadeIn {
+          from {opacity: 0;} 
+          to {opacity: 1;}
+        }
+        @keyframes fadeIn {
+          from {opacity: 0;}
+          to {opacity:1 ;}
+        }
+        #puzzle .cell-puzzle {
+            width: 160px;
+            height: 160px;
+            border: 4px solid transparent;
+            margin-left: 522px;
+            margin-top: 121.5px;
+            position: absolute;
+        }
+        #puzzle > .row-1 {
+            top: 0;
+        }
+        #puzzle > .row-2 {
+            top: 164px;
+        }
+        #puzzle > .row-3 {
+            top: 328px;
+        }
+        #puzzle > .col-1 {
+            left: 0;
+        }
+        #puzzle > .col-2 {
+            left: 164px;
+        }
+        #puzzle > .col-3 {
+            left: 328px;
+        }
+        #control{
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+        }
+        #control .up{
+            margin-top: -68.5px;
+            margin-left: 582px;
+            position: absolute;
+            border: 5px solid transparent;
+        }
+        #control > .un1{
+            left: 0;
+        }
+        #control > .un2{
+            left: 164px;
+        }
+        #control > .un3{
+            left: 328px;
+        }
+        #control .left{
+            margin-top: 181.5px;
+            margin-left: 469px;
+            position: absolute;
+            border: 5px solid transparent;
+        }
+        #control > .ln1{
+            top: 0;
+        }
+        #control > .ln2{
+            top: 164px;
+        }
+        #control > .ln3{
+            top: 328px;
+        }
+        #control .right{
+            margin-top: 181.5px;
+            margin-left: 1006px;
+            position: absolute;
+            border: 5px solid transparent;
+        }
+        #control > .rn1{
+            top: 0;
+        }
+        #control > .rn2{
+            top: 164px;
+        }
+        #control > .rn3{
+            top: 328px;
+        }
+        #control .down{
+            margin-top: 469px;
+            margin-left: 582px;
+            position: absolute;
+            border: 5px solid transparent;
+        }
+        #control > .dn1{
+            left: 0;
+        }
+        #control > .dn2{
+            left: 164px;
+        }
+        #control > .dn3{
+            left: 328px;
+        }
+    </style>
+</head>
+<body>
+    <a class="maintitle" href="index.html">
+        <img src="logo.png" height="40" width="217"></img>
+    </a>
+    <div> <hr> </div>
+    <div id="board-time">00 | 00</div>
+    <div id="puzzle">
+        <div number="1" class="cell-puzzle row-1 col-1">
+          <img src="deadpool/pic1.jpg" height="160px" width="160px"></img>
+        </div>
+        <div number="2" class="cell-puzzle row-1 col-2">
+          <img src="deadpool/pic2.jpg" height="160px" width="160px"></img>
+        </div>
+        <div number="3" class="cell-puzzle row-1 col-3">
+          <img src="deadpool/pic3.jpg" height="160px" width="160px"></img>
+        </div>
+        <div number="4" class="cell-puzzle row-2 col-1">
+          <img src="deadpool/pic4.jpg" height="160px" width="160px"></img>
+        </div>
+        <div number="5" class="cell-puzzle row-2 col-2">
+          <img src="deadpool/pic5.jpg" height="160px" width="160px"></img>
+        </div>
+        <div number="6" class="cell-puzzle row-2 col-3">
+          <img src="deadpool/pic6.jpg" height="160px" width="160px"></img>
+        </div>
+        <div number="7" class="cell-puzzle row-3 col-1">
+          <img src="deadpool/pic7.jpg" height="160px" width="160px"></img>
+        </div>
+        <div number="8" class="cell-puzzle row-3 col-2">
+          <img src="deadpool/pic8.jpg" height="160px" width="160px"></img>
+        </div>
+        <div number="9" class="cell-puzzle row-3 col-3">
+          <img src="deadpool/pic9.jpg" height="160px" width="160px"></img>
+        </div>
+      </div>
+      <div id="control">
+        <div number="1" class="up un1">
+            <img src="up.png" height="40px" width="40px"></img>
+        </div>
+        <div number="2" class="up un2">
+            <img src="up.png" height="40px" width="40px"></img>
+        </div>
+        <div number="3" class="up un3">
+            <img src="up.png" height="40px" width="40px"></img>
+        </div>
+        <div number="1" class="left ln1">
+          <img src="left.png" height="40px" width="40px"></img>
+        </div>
+        <div number="2" class="left ln2">
+          <img src="left.png" height="40px" width="40px"></img>
+        </div>
+        <div number="3" class="left ln3">
+          <img src="left.png" height="40px" width="40px"></img>
+        </div>
+        <div number="1" class="right rn1">
+          <img src="right.png" height="40px" width="40px"></img>
+        </div>
+        <div number="2" class="right rn2">
+          <img src="right.png" height="40px" width="40px"></img>
+        </div>
+        <div number="3" class="right rn3">
+          <img src="right.png" height="40px" width="40px"></img>
+        </div>
+        <div number="1" class="down dn1">
+          <img src="down.png" height="40px" width="40px"></img>
+        </div>
+        <div number="2" class="down dn2">
+          <img src="down.png" height="40px" width="40px"></img>
+        </div>
+        <div number="3" class="down dn3">
+          <img src="down.png" height="40px" width="40px"></img>
+        </div>
+      </div>
+      <div id="popup" onclick="popupactive()">
+        <div id="shuffle">
+          <img src="shuffle.png" height="60px" width="60px"></img>
+        </div>
+        <span class="popuptext" id="myPopup">Ấn vào đây để bắt đầu</span>
+      </div>
+      <div id="popup">
+        <span class="popuptext" id="myPopupwin"></span>
+      </div>
+      <div id="sample">
+        <img src="deadpool/deadpoolori.jpg" height="244px" width="244px"></img>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+  var matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+  var num = [];
+  var obj = [];
+  var secs = 0;
+  var currentSeconds = 0;
+  var currentMinutes = 0;
+  var timer;
+  var clicked = 0;
+  $("#shuffle").bind("click",function(){    //xáo trộn mảnh ghép
+   initialize();
+})
+  popupactive();
+  function popupactive() {
+    var popup = document.getElementById("myPopup");
+    if(clicked < 2){
+    popup.classList.toggle("show");
+    clicked++;;
+    }
+  }
+function initialize(){  //di chuyển theo thứ tự ngẫu nhiên
+  var arrRandomNumber = shuffleMatrix();
+  var count = 0;
+  beginTime();
+  for(var i = 0; i < 3; i++) {
+    for(var j = 0; j < 3; j++) {
+      var number = arrRandomNumber[count];
+      matrix[i][j] = number;
+      $("#puzzle .cell-puzzle[number=" + number + "]").css("top", i * 164 + "px");
+      $("#puzzle .cell-puzzle[number=" + number + "]").css("left", j * 164 + "px");
+      count++;
+    }
+  }
+}
+
+function shuffleMatrix(){   //tạo mảng ngẫu nhiên
+  var arr = [];
+  while(arr.length < 9){
+    var r = Math.floor(Math.random() * 9) + 1;
+    if(arr.indexOf(r) === -1) arr.push(r);
+  }
+  return arr;
+}
+
+function beginTime() {  //khởi tạo đồng hồ đếm thời gian
+  secs = 0;
+  currentSeconds = 0;
+  currentMinutes = 0;
+  clearTimeout(timer);
+  intervalTime();
+}
+
+function intervalTime() {   //đếm thời gian
+  currentMinutes = Math.floor(secs / 60);
+  currentSeconds = secs % 60;
+  if(currentMinutes <= 9) {
+    currentMinutes = "0" + currentMinutes;
+  }
+  if(currentSeconds <= 9) {
+    currentSeconds = "0" + currentSeconds;
+  }
+  secs++;
+  $("#board-time").text(currentMinutes + " | " + currentSeconds);
+  $("#myPopupwin").text("YOU WIN!!! Thời gian hoàn thành "+currentMinutes + " phút " + currentSeconds+" giây")
+  timer = setTimeout('intervalTime()', 1000);
+  console.log(secs);
+}
+    //đọc di chuyển xuống
+  $("#control .dn1").bind("click",function() {
+    if(secs > 0){
+        movedown(1);
+      }
+  })
+  $("#control .dn2").bind("click",function() {
+    if(secs > 0){
+        movedown(2);
+      }
+  })
+  $("#control .dn3").bind("click",function() {
+    if(secs > 0){
+        movedown(3);
+      }
+  })
+
+  function movedown(numofcol) { //hàm gọi di chuyển xuống
+    var temp = matrix[2][numofcol-1];
+    var win = false
+  for(var i = 0; i < 3; i++) {
+      num[i]= matrix[i][numofcol-1];
+      matrix[i][numofcol-1] = num[i-1];
+      obj[i] = $("#puzzle .cell-puzzle[number="+ num[i] +"]");
+      if(i!==2){
+      obj[i].css(
+            'top',  (i+1)*164+ 'px'
+            );}
+            else {
+      obj[i].css(
+            'top',  0+ 'px'
+            );}
+    } 
+    matrix[0][numofcol-1] = temp;
+    win = checkWin();
+        if (win){
+          return;
+        }
+    }
+    //đọc di chuyển lên
+    $("#control .un1").bind("click",function() {
+    if(secs > 0){
+        movedown(1);
+        movedown(1);
+      }
+  })
+  $("#control .un2").bind("click",function() {
+    if(secs > 0){
+        movedown(2);
+        movedown(2);
+      }
+  })
+  $("#control .un3").bind("click",function() {
+    if(secs > 0){
+        movedown(3);
+        movedown(3);
+      }
+  })
+
+     //đọc di chuyển sang phải
+  $("#control .rn1").bind("click",function() {
+    if(secs > 0){
+        moveright(1);
+      }
+  })
+  $("#control .rn2").bind("click",function() {
+    if(secs > 0){
+        moveright(2);
+      }
+  })
+  $("#control .rn3").bind("click",function() {
+    if(secs > 0){
+        moveright(3);
+      }
+  })
+
+  function moveright(numofrow) { //hàm gọi di chuyển sang phải
+    var temp = matrix[numofrow-1][2];
+    var win = false;
+  for(var i = 0; i < 3; i++) {
+      num[i]= matrix[numofrow-1][i];
+      matrix[numofrow-1][i] = num[i-1];
+      obj[i] = $("#puzzle .cell-puzzle[number="+ num[i] +"]");
+      if(i!==2){
+      obj[i].css(
+            'left',  (i+1)*164+ 'px'
+            );}
+            else {
+      obj[i].css(
+            'left',  0+ 'px'
+            );}
+    } 
+    matrix[numofrow-1][0] = temp;
+    win = checkWin();
+        if (win){
+          return;
+        }
+    }
+     //đọc di chuyển sang trái
+  $("#control .ln1").bind("click",function() {
+    if(secs > 0){
+        moveright(1);
+        moveright(1);
+      }
+  })
+  $("#control .ln2").bind("click",function() {
+    if(secs > 0){
+        moveright(2);
+        moveright(2);
+      }
+  })
+  $("#control .ln3").bind("click",function() {
+    if(secs > 0){
+        moveright(3);
+        moveright(3);
+      }
+  })
+    function checkWin(){
+    var winner =false;
+    var winString = "1,2,3,4,5,6,7,8,9";
+    var matrixStr = matrix.toString();
+    var popup = document.getElementById("myPopupwin");
+    if(winString == matrixStr) {
+        clearTimeout(timer);
+        popup.classList.toggle("show");
+        return;
+    } }
+</script>

@@ -1,0 +1,70 @@
+<!-- Width = 1536px -->
+<!-- Height = 695px -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="/P.png"/>
+    <title>Puzzoll</title>
+    <style>
+        body{
+            background-color: white;
+        }
+        #logo{
+            text-align: center;
+            margin-top: 50px;
+        }
+        #script{
+            margin-top: 40px;
+            font-size: large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        a:link, a:visited{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            padding: 20px 96px;
+            font-size: 30px;
+            cursor: pointer;
+            border: 2px solid black;
+            color: white;
+            border-radius: 50px;
+            background-color: rgb(14, 212, 14);
+            }
+        a:hover, a:active {background-color: #156c18}
+        #selection > .matrix3x3{
+            margin-top: 10px;
+        }
+        #selection > .matrix4x4{
+            margin-top: 20px;
+        }
+        #selection > .matrix5x5{
+            margin-top: 20px;
+        }
+        #selection{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="logo">
+     <img src="logo.png" height="100" width="542.59"></img>
+    </div>
+    <div id="script">
+        <h1> Chọn độ khó</h1>
+    </div>
+    <div id="selection">
+        <div number="1" class="box matrix3x3">
+            <a href="normal.html">3x3</a>
+        </div>
+        <div number="2" class="box matrix4x4">
+            <a href="harder.html">4x4</a>
+        </div>
+        <div number="3" class="box matrix5x5">
+            <a href="impossible.html">5x5</a>
+        </div>
+    </div>
+</body>
+</html>
